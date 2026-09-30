@@ -1,6 +1,6 @@
 # Geometry, Topology & Groups: Paper Database
 
-A searchable list of research papers in low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, published in 39 leading mathematics journals. The data is compiled from [zbMATH Open](https://zbmath.org/).
+A searchable list of research papers in low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, published in 39 leading mathematics journals. The data is compiled from [zbMATH Open](https://zbmath.org/). Prepared using Claude.
 
 **Browse and search:** https://soumyadey-math.github.io/gt-papers/
 
