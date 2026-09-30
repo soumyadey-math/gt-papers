@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry, Topology &amp; Groups: Paper Database</title>
+<meta name="description" content="A searchable database of papers in low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, in 39 leading journals, compiled from zbMATH Open.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] }, svg: { fontCache: 'global' }, startup: { typeset: false } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg-full.js" async></script>
+<style>
+:root {
+  --paper: #f5f6f8; --surface: #ffffff; --ink: #18202e; --ink-2: #4a5468; --ink-3: #6f788c;
+  --rule: #dfe3ea; --accent: #2b4c9b; --accent-soft: #e7ecf8;
+  --ok: #1f7a52; --ok-soft: #e3f3ea; --mid: #5b6479; --mid-soft: #eceef3; --warn: #9a5b00; --hl: #fff3b8;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #11151d; --surface: #181e29; --ink: #e6e9f0; --ink-2: #b0b8c9; --ink-3: #8f98ad;
+    --rule: #2a3242; --accent: #8fa9ec; --accent-soft: #1f2a45;
+    --ok: #6fcf9f; --ok-soft: #173327; --mid: #a3abbe; --mid-soft: #232a38; --warn: #f0b35c; --hl: #4a4217;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #11151d; --surface: #181e29; --ink: #e6e9f0; --ink-2: #b0b8c9; --ink-3: #8f98ad;
+  --rule: #2a3242; --accent: #8fa9ec; --accent-soft: #1f2a45;
+  --ok: #6fcf9f; --ok-soft: #173327; --mid: #a3abbe; --mid-soft: #232a38; --warn: #f0b35c; --hl: #4a4217;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.5; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 64px; }
+header.top { display: grid; gap: 6px; margin-bottom: 18px; }
+.eyebrow { font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 4vw, 36px); line-height: 1.12; margin: 0; text-wrap: balance; }
+.lede { color: var(--ink-2); max-width: 72ch; margin: 4px 0 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 8px; font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 13px; }
+.stats b { color: var(--ink); font-weight: 600; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px; }
+.controls { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; position: sticky; top: 0; z-index: 5; box-shadow: 0 6px 18px -14px rgba(20,30,50,.35); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.search { flex: 1 1 300px; }
+.search input { width: 100%; font: inherit; font-size: 15px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); }
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+select, .yr { font: inherit; padding: 7px 9px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); max-width: 100%; }
+.yr { width: 5.6em; font-variant-numeric: tabular-nums; }
+label.lbl { font-size: 12px; color: var(--ink-3); display: flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; }
+#journal { width: 16em; max-width: 100%; min-width: 0; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.seg button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--ink-2); padding: 7px 11px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip { font-family: var(--mono); font-size: 12px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.chip .n { color: var(--ink-3); margin-left: 4px; font-variant-numeric: tabular-nums; }
+.chiplabel { font-size: 12px; color: var(--ink-3); margin-right: 2px; }
+.count { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.btn { font: inherit; font-size: 13px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); padding: 6px 11px; border-radius: 8px; cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.linkbtn { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 2px; }
+.help { font-size: 12.5px; color: var(--ink-3); }
+.help code { font-family: var(--mono); font-size: 12px; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 0 4px; color: var(--ink-2); }
+.hist { display: flex; align-items: flex-end; gap: 1px; overflow: hidden; height: 46px; margin-top: 2px; }
+.hist button { flex: 1 1 0; min-width: 0; border: 0; padding: 0; background: var(--accent); opacity: .55; cursor: pointer; border-radius: 1px 1px 0 0; }
+.hist button:hover, .hist button:focus-visible { opacity: 1; }
+.histaxis { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+details.about { margin: 16px 0 6px; }
+details.about summary { cursor: pointer; font-weight: 500; }
+details.about p, details.about li { color: var(--ink-2); max-width: 78ch; }
+.group { margin-top: 24px; }
+.group h2 { font-family: var(--serif); font-weight: 500; font-size: 22px; margin: 0 0 4px; display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+.group h2 .gc { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); font-weight: 400; }
+ol.papers { list-style: none; margin: 0; padding: 0; }
+li.paper { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 12px 0; border-bottom: 1px dashed var(--rule); }
+.ptitle { font-family: var(--serif); font-size: 17px; line-height: 1.3; font-weight: 500; }
+.ptitle a { color: var(--ink); text-decoration: none; }
+.ptitle a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.meta { color: var(--ink-2); font-size: 13.5px; }
+.meta .jr { font-style: italic; }
+.au { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; text-decoration-color: var(--ink-3); }
+.au:hover { color: var(--accent); }
+.codes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.code { font-family: var(--mono); font-size: 11.5px; padding: 1px 6px; border-radius: 4px; color: var(--ink-3); border: 1px solid transparent; background: none; cursor: pointer; }
+.code.m { color: var(--accent); background: var(--accent-soft); }
+.code.p { border-color: var(--ink-3); }
+.code.m.p { border-color: var(--accent); }
+.side { display: grid; justify-items: end; align-content: start; gap: 6px; }
+.badge { font-size: 11.5px; font-weight: 500; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.badge.v { color: var(--ok); background: var(--ok-soft); }
+.badge.c { color: var(--mid); background: var(--mid-soft); }
+.tk { font-size: 11.5px; color: var(--warn); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.actions a, .actions button { font-size: 12.5px; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; text-decoration: none; }
+.actions a:hover, .actions button:hover { text-decoration: underline; }
+mark { background: var(--hl); color: inherit; border-radius: 2px; }
+.empty { padding: 40px 0; text-align: center; color: var(--ink-2); }
+.more { display: flex; justify-content: center; margin-top: 18px; }
+.toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 20; }
+.toast.on { opacity: 1; }
+.loading { padding: 40px 0; text-align: center; color: var(--ink-2); }
+footer { margin-top: 40px; color: var(--ink-3); font-size: 12.5px; }
+footer a { color: var(--ink-2); }
+@media (max-width: 600px) {
+  li.paper { grid-template-columns: 1fr; }
+  .side { justify-items: start; }
+  .actions { justify-content: flex-start; }
+  .controls { position: static; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Research papers database · Geometry &amp; Topology</div>
+    <h1>Geometry, Topology &amp; Groups: Paper Database</h1>
+    <p class="lede">Papers in 39 leading journals classified (primary or secondary) under low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, compiled from zbMATH Open. Each title links to the paper on the journal's website.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section class="panel controls" aria-label="Search and filters">
+    <div class="row">
+      <div class="search"><input id="q" type="search" placeholder="Search titles, authors, MSC codes, DOIs…  (press / to focus)" autocomplete="off" aria-describedby="help"></div>
+      <div class="seg" role="group" aria-label="Group results by">
+        <button id="gYear" aria-pressed="true">By year</button>
+        <button id="gJournal" aria-pressed="false">By journal</button>
+        <button id="gNone" aria-pressed="false">Flat list</button>
+      </div>
+    </div>
+    <div class="help" id="help">Tips: <code>au:bestvina</code> author, <code>ti:"mapping class"</code> phrase in title, <code>msc:20F65</code> code, <code>-braid</code> excludes a word. Click an author or an MSC code on any paper to filter by it.</div>
+    <div class="row">
+      <label class="lbl" for="journal">Journal <select id="journal"><option value="">All journals</option></select></label>
+      <label class="lbl" for="y1">Years <input class="yr" id="y1" type="number" inputmode="numeric" aria-label="From year"> – <input class="yr" id="y2" type="number" inputmode="numeric" aria-label="To year"></label>
+      <label class="lbl" for="level">Status <select id="level"><option value="">All</option><option value="v">Verified only</option></select></label>
+      <label class="lbl" for="prim"><input type="checkbox" id="prim"> Target code is primary</label>
+    </div>
+    <div class="chips" id="chips"><span class="chiplabel">MSC</span></div>
+    <div>
+      <div class="hist" id="hist" aria-label="Papers per year for the current results; click a bar to show that year"></div>
+      <div class="histaxis"><span id="hmin"></span><span id="hmax"></span></div>
+    </div>
+    <div class="row">
+      <span class="count" id="count" aria-live="polite"></span>
+      <button class="btn" id="dlBib">Download BibTeX</button>
+      <button class="btn" id="dlCsv">Download CSV</button>
+      <button class="btn" id="share">Copy link to this search</button>
+      <button class="linkbtn" id="reset">Reset</button>
+    </div>
+  </section>
+
+  <details class="about">
+    <summary>About this database</summary>
+    <p>Records come from <a href="https://zbmath.org/" target="_blank" rel="noopener">zbMATH Open</a>. A paper is included when any of its MSC codes (primary or secondary) is one of the target codes shown as chips above, or when its title contains "mapping class" or "Teichmüller" (marked <span class="tk">Found by title keyword</span>). All years are covered for every journal.</p>
+    <ul>
+      <li><span class="badge v">Verified</span> two independent reads of the zbMATH record agree.</li>
+      <li><span class="badge c">Checked</span> read once; passed DOI, year and completeness checks.</li>
+      <li>Missing DOIs and a few errors in zbMATH (pages, year, issue) were corrected by hand against the publishers' pages.</li>
+    </ul>
+    <p>The full data can be downloaded as <a href="data/papers.bib">BibTeX</a>, <a href="data/papers.csv">CSV</a> or <a href="data/papers.json">JSON</a>. Found an error or a missing paper? Please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">report it on GitHub</a>.</p>
+  </details>
+
+  <main id="list"><p class="loading">Loading the database…</p></main>
+  <div class="more"><button class="btn" id="more" hidden>Show more</button></div>
+
+  <footer>
+    <p>Compiled by Dr Soumya Dey, Krea University. Bibliographic data from zbMATH Open (CC BY-SA 4.0). <span id="upd"></span> <a href="https://github.com/soumyadey-math/gt-papers" target="_blank" rel="noopener">Source and downloads on GitHub</a> · <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">Report an error</a></p>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(async function(){
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const toast = msg => { const t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('on'), 1800); };
+  let ALL, META;
+  try {
+    [ALL, META] = await Promise.all([fetch('data/papers.json').then(r => r.json()), fetch('data/meta.json').then(r => r.json())]);
+  } catch (e) {
+    $('list').innerHTML = '<p class="empty">Could not load data/papers.json. If you opened this file directly from your computer, view it through GitHub Pages or a local web server instead.</p>';
+    return;
+  }
+  const TARGET = META.target;
+  const fold = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  ALL.forEach(r => {
+    r._t = fold(r.t); r._a = fold(r.a.join(' ; ')); r._m = r.m.join(' ').toLowerCase();
+    r._all = r._t + ' ' + r._a + ' ' + r._m + ' ' + r.doi.toLowerCase() + ' ' + fold(r.j);
+  });
+  const years = ALL.map(r => r.y);
+  const minY = Math.min(...years), maxY = Math.max(...years);
+  $('stats').innerHTML = `<span><b>${ALL.length.toLocaleString()}</b> papers</span><span><b>${META.journals}</b> journals</span><span>${minY}–${maxY}</span><span><b>${META.verified.toLocaleString()}</b> verified</span><span>Updated ${esc(META.updated)}</span>`;
+  $('upd').textContent = 'Last updated ' + META.updated + '.';
+
+  const journals = [...new Set(ALL.map(r => r.j))].sort((a,b) => a.localeCompare(b));
+  $('journal').insertAdjacentHTML('beforeend', journals.map(j => `<option>${esc(j)}</option>`).join(''));
+  $('y1').placeholder = minY; $('y2').placeholder = maxY;
+
+  const codeCount = {}; TARGET.forEach(c => codeCount[c] = 0);
+  ALL.forEach(r => r.m.forEach(c => { if (c in codeCount) codeCount[c]++; }));
+  const active = new Set();
+  $('chips').insertAdjacentHTML('beforeend', TARGET.map(c => `<button class="chip" data-c="${c}" aria-pressed="false">${c}<span class="n">${codeCount[c]}</span></button>`).join('')
+    + `<button class="chip" data-c="TITLE" aria-pressed="false" title="Papers found only because the title mentions mapping class groups or Teichmüller theory">Title keyword<span class="n">${ALL.filter(r => r.tk).length}</span></button>`);
+  const syncChips = () => document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', active.has(b.dataset.c)));
+  $('chips').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    const c = b.dataset.c; active.has(c) ? active.delete(c) : active.add(c);
+    syncChips(); update();
+  });
+
+  // ---- search parsing: au: ti: msc: doi: fields, "phrases", -exclusions ----
+  function parse(q){
+    const out = [];
+    const re = /(-)?(?:(au|ti|msc|doi|j):)?("([^"]*)"|(\S+))/gi; let m;
+    while ((m = re.exec(q))) {
+      const val = fold(m[4] ?? m[5] ?? ''); if (!val) continue;
+      out.push({ neg: !!m[1], field: (m[2]||'').toLowerCase(), val });
+    }
+    return out;
+  }
+  const fieldOf = (r, f) => f === 'au' ? r._a : f === 'ti' ? r._t : f === 'msc' ? r._m : f === 'doi' ? r.doi.toLowerCase() : f === 'j' ? fold(r.j) : r._all;
+
+  let groupBy = 'year', limit = 300;
+  function state(){ return { q: $('q').value.trim(), j: $('journal').value, y1: $('y1').value, y2: $('y2').value, lv: $('level').value, pr: $('prim').checked ? '1' : '', c: [...active].join(','), g: groupBy === 'year' ? '' : groupBy }; }
+  function writeURL(){
+    const s = state(), p = new URLSearchParams();
+    Object.entries(s).forEach(([k,v]) => { if (v) p.set(k, v); });
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+  }
+  function readURL(){
+    const p = new URLSearchParams(location.search);
+    $('q').value = p.get('q') || ''; $('journal').value = p.get('j') || ''; $('y1').value = p.get('y1') || ''; $('y2').value = p.get('y2') || '';
+    $('level').value = p.get('lv') || ''; $('prim').checked = p.get('pr') === '1';
+    active.clear(); (p.get('c') || '').split(',').filter(Boolean).forEach(c => active.add(c)); syncChips();
+    groupBy = p.get('g') || 'year';
+  }
+
+  function filtered(){
+    const terms = parse($('q').value);
+    const j = $('journal').value, lv = $('level').value, prim = $('prim').checked;
+    const y1 = parseInt($('y1').value) || -Infinity, y2 = parseInt($('y2').value) || Infinity;
+    const codes = [...active].filter(c => c !== 'TITLE'), wantTitle = active.has('TITLE');
+    const rows = ALL.filter(r => {
+      if (j && r.j !== j) return false;
+      if (lv && r.lv !== lv) return false;
+      if (r.y < y1 || r.y > y2) return false;
+      if (active.size && !((codes.length && r.m.some(c => codes.includes(c))) || (wantTitle && r.tk))) return false;
+      if (prim && !(codes.length ? codes.includes(r.pr) : TARGET.includes(r.pr))) return false;
+      return terms.every(t => fieldOf(r, t.field).includes(t.val) !== t.neg);
+    });
+    return { terms: terms.filter(t => !t.neg), rows };
+  }
+  function hl(text, terms, field){
+    let s = esc(text);
+    terms.forEach(t => {
+      if (t.val.length < 2 || (t.field && t.field !== field)) return;
+      const re = new RegExp('(' + t.val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      s = s.replace(re, '<mark>$1</mark>');
+    });
+    return s;
+  }
+  const link = r => r.doi ? 'https://doi.org/' + r.doi : r.url;
+  const linkLabel = r => r.doi ? 'Journal page' : r.url.includes('numdam') ? 'Numdam' : r.url.includes('arxiv') ? 'arXiv' : 'zbMATH';
+  function bib(r){
+    const pages = /^\d+-\d+$/.test(r.p) ? r.p.replace('-', '--') : r.p;
+    const f = [['author', r.a.join(' and ')], ['title', '{' + r.t + '}'], ['journal', r.j], ['year', String(r.y)], ['volume', r.v], ['number', r.i], ['pages', pages], ['doi', r.doi], ['url', r.url]];
+    return `@article{${r.key},\n` + f.filter(x => x[1]).map(([k,v]) => `  ${k} = {${v}}`).join(',\n') + '\n}\n';
+  }
+  function paperHTML(r, terms){
+    const hasMath = /\\\(|\$/.test(r.t);
+    const title = hasMath ? esc(r.t) : hl(r.t, terms, 'ti');
+    const vol = [r.v && `<b>${esc(r.v)}</b>`, r.i ? `(${esc(r.i)})` : ''].join('');
+    const pages = r.p ? `, ${esc(r.p)}` : '';
+    const authors = r.a.map(a => `<button class="au" data-au="${esc(a.split(',')[0])}" title="Show all papers by ${esc(a)}">${hl(a, terms, 'au')}</button>`).join('; ');
+    const codes = r.m.map(c => `<button class="code${TARGET.includes(c) ? ' m' : ''}${c === r.pr ? ' p' : ''}" data-msc="${esc(c)}" title="Filter by ${esc(c)}">${esc(c)}</button>`).join('');
+    return `<li class="paper">
+      <div>
+        <div class="ptitle"><a href="${esc(link(r))}" target="_blank" rel="noopener">${title}</a></div>
+        <div class="meta">${authors} · <span class="jr">${esc(r.j)}</span> ${vol}${pages} (${r.y})</div>
+        <div class="codes">${codes}</div>
+      </div>
+      <div class="side">
+        <span class="badge ${r.lv}">${r.lv === 'v' ? 'Verified' : 'Checked'}</span>
+        ${r.tk ? '<span class="tk">Found by title keyword</span>' : ''}
+        <div class="actions"><a href="${esc(link(r))}" target="_blank" rel="noopener">${linkLabel(r)} ↗</a><button data-bib="${esc(r.id)}">Copy BibTeX</button></div>
+      </div>
+    </li>`;
+  }
+  function hist(rows){
+    const c = {}; rows.forEach(r => c[r.y] = (c[r.y] || 0) + 1);
+    const lo = rows.length ? Math.min(...rows.map(r => r.y)) : minY, hi = rows.length ? Math.max(...rows.map(r => r.y)) : maxY;
+    const mx = Math.max(1, ...Object.values(c));
+    let h = '';
+    for (let y = lo; y <= hi; y++) h += `<button data-y="${y}" style="height:${c[y] ? Math.max(4, 100 * c[y] / mx) : 0}%" title="${y}: ${c[y] || 0} paper${c[y] === 1 ? '' : 's'}" aria-label="${y}: ${c[y] || 0} papers"></button>`;
+    $('hist').innerHTML = h; $('hmin').textContent = lo; $('hmax').textContent = hi;
+  }
+  let CUR = [];
+  function render(){
+    const { terms, rows } = filtered(); CUR = rows;
+    $('count').textContent = `${rows.length.toLocaleString()} of ${ALL.length.toLocaleString()} papers`;
+    hist(rows);
+    const key = groupBy === 'year' ? (r => r.y) : groupBy === 'journal' ? (r => r.j) : (r => '');
+    const sorted = rows.slice().sort(groupBy === 'journal'
+      ? (a,b) => a.j.localeCompare(b.j) || b.y - a.y || a.t.localeCompare(b.t)
+      : (a,b) => b.y - a.y || a.j.localeCompare(b.j) || a.t.localeCompare(b.t));
+    const counts = {}; rows.forEach(r => { const k = key(r); counts[k] = (counts[k] || 0) + 1; });
+    let html = '', cur = null;
+    sorted.slice(0, limit).forEach(r => {
+      const k = key(r);
+      if (k !== cur) {
+        if (cur !== null) html += '</ol></section>';
+        cur = k;
+        html += `<section class="group">${k !== '' ? `<h2>${esc(k)}<span class="gc">${counts[k]} paper${counts[k] === 1 ? '' : 's'}</span></h2>` : ''}<ol class="papers">`;
+      }
+      html += paperHTML(r, terms);
+    });
+    if (cur !== null) html += '</ol></section>';
+    $('list').innerHTML = html || '<p class="empty">No papers match. Try removing a filter or widening the year range.</p>';
+    $('more').hidden = sorted.length <= limit;
+    $('more').textContent = `Show ${Math.min(300, sorted.length - limit)} more`;
+    ['gYear','gJournal','gNone'].forEach(id => $(id).setAttribute('aria-pressed', ({gYear:'year',gJournal:'journal',gNone:'none'})[id] === groupBy));
+    typeset();
+  }
+  function typeset(){
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([$('list')]).catch(() => {});
+    else setTimeout(typeset, 400);
+  }
+  function update(){ limit = 300; writeURL(); render(); }
+
+  const byId = new Map(ALL.map(r => [r.id, r]));
+  $('list').addEventListener('click', e => {
+    const a = e.target.closest('.au'), c = e.target.closest('[data-msc]'), b = e.target.closest('[data-bib]');
+    if (a) { $('q').value = `au:"${a.dataset.au}"`; update(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    else if (c) { const code = c.dataset.msc; if (TARGET.includes(code)) { active.add(code); syncChips(); } else { $('q').value = ($('q').value + ' msc:' + code).trim(); } update(); }
+    else if (b) { navigator.clipboard.writeText(bib(byId.get(b.dataset.bib))).then(() => toast('BibTeX copied'), () => toast('Copy failed')); }
+  });
+  $('hist').addEventListener('click', e => { const b = e.target.closest('[data-y]'); if (!b) return; $('y1').value = b.dataset.y; $('y2').value = b.dataset.y; update(); });
+  const download = (name, text, type) => { const u = URL.createObjectURL(new Blob([text], { type })); const a = document.createElement('a'); a.href = u; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(u), 1000); };
+  $('dlBib').onclick = () => { download('papers.bib', CUR.map(bib).join('\n'), 'text/plain'); toast(`${CUR.length} entries downloaded`); };
+  const csvq = s => '"' + String(s ?? '').replace(/"/g, '""') + '"';
+  $('dlCsv').onclick = () => {
+    const head = ['year','journal','volume','issue','pages','authors','title','doi','link','msc','status'];
+    const lines = CUR.map(r => [r.y, r.j, r.v, r.i, r.p, r.a.join('; '), r.t, r.doi, link(r), r.m.join(';'), r.lv === 'v' ? 'verified' : 'checked'].map(csvq).join(','));
+    download('papers.csv', '﻿' + head.join(',') + '\n' + lines.join('\n'), 'text/csv'); toast(`${CUR.length} rows downloaded`);
+  };
+  $('share').onclick = () => { writeURL(); navigator.clipboard.writeText(location.href).then(() => toast('Link copied'), () => toast('Copy failed')); };
+  $('more').onclick = () => { limit += 300; render(); };
+  let t; $('q').addEventListener('input', () => { clearTimeout(t); t = setTimeout(update, 180); });
+  ['journal','level','y1','y2','prim'].forEach(id => $(id).addEventListener('change', update));
+  $('gYear').onclick = () => { groupBy = 'year'; update(); };
+  $('gJournal').onclick = () => { groupBy = 'journal'; update(); };
+  $('gNone').onclick = () => { groupBy = 'none'; update(); };
+  $('reset').onclick = () => { history.replaceState(null, '', location.pathname); readURL(); update(); };
+  document.addEventListener('keydown', e => { if (e.key === '/' && document.activeElement !== $('q') && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); $('q').focus(); } });
+  readURL(); render();
+})();
+</script>
+</body>
+</html>
