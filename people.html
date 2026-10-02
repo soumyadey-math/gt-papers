@@ -119,7 +119,7 @@ footer a { color: var(--ink-2); }
   <header class="top">
     <div class="eyebrow">Low-Dimensional Topology and Geometric Group Theory: Research Papers Database · <a href="index.html">Papers</a> · <b>Researchers</b></div>
     <h1>Researchers</h1>
-    <p class="lede">Everyone who appears as an author in the <a href="index.html">papers database</a>, with last known affiliation, links to homepages, MathSciNet, zbMATH and the Mathematics Genealogy Project, publication counts and major prizes.</p>
+    <p class="lede">Everyone who appears as an author in the <a href="index.html">papers database</a>, with their last known affiliation, publication counts, major prizes and ICM talks, and links to their homepages and their MathSciNet, zbMATH and Mathematics Genealogy Project pages.</p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -140,8 +140,11 @@ footer a { color: var(--ink-2); }
       <label class="lbl" for="minp">At least <input class="yr" id="minp" type="number" min="1" value="1" inputmode="numeric"> papers here</label>
       <label class="lbl"><input type="checkbox" id="ftop"> Has a paper in a top journal</label>
       <label class="lbl"><input type="checkbox" id="fprize"> Has a major prize</label>
+      <label class="lbl"><input type="checkbox" id="ficm"> ICM Invited Speaker</label>
+      <label class="lbl"><input type="checkbox" id="fplen"> ICM Plenary Speaker</label>
       <label class="lbl"><input type="checkbox" id="fhome"> Has a homepage</label>
       <label class="lbl"><input type="checkbox" id="factive"> Active since 2020</label>
+      <label class="lbl" for="ffirst" title="Year of the person's earliest paper in this database">First paper here in or after <select id="ffirst"><option value="">any year</option></select></label>
     </div>
     <div class="row">
       <span class="count" id="count" aria-live="polite"></span>
@@ -153,18 +156,18 @@ footer a { color: var(--ink-2); }
 
   <details class="about">
     <summary>About this list</summary>
-    <p>People are identified by their zbMATH Open author profile, so different spellings of the same name are merged. <b>Papers here</b> counts papers in this database; <b>total publications</b> is zbMATH's count of everything the person has published. <b>Top journals</b> are Annals of Mathematics, Acta Mathematica, Inventiones Mathematicae, Journal of the AMS and Publications Mathématiques de l'IHÉS.</p>
-    <p>Affiliations are the last known ones and may be out of date. Where an affiliation was taken from the author's own address on a recent arXiv paper, that paper is linked. MathSciNet links are shown where the author ID is known; MathSciNet needs a subscription. Prizes are major prizes only, so the list is not complete.</p>
-    <p><b>Corrections are very welcome.</b> If anything about you or a colleague is wrong or missing, or you would like an entry changed or removed, please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or email the maintainer.</p>
+    <p>People are identified by their zbMATH Open author profile, so different spellings of the same name are merged. <b>Papers here</b> counts papers in this database, and <b>first paper here</b> is the year of the earliest of them (their first publication overall may be earlier, in a journal not covered here); <b>total publications</b> is zbMATH's count of everything the person has published. <b>Top journals</b> are Annals of Mathematics, Acta Mathematica, Inventiones Mathematicae, Journal of the AMS and Publications Mathématiques de l'IHÉS.</p>
+    <p>Affiliations are the last known ones and may be out of date. Where an affiliation was taken from the author's own address on a recent arXiv paper, that paper is linked. MathSciNet links are shown where the author ID is known; MathSciNet needs a subscription. Prizes are major prizes only, so the list is not complete. <b>ICM talks</b> are plenary and invited lectures at the International Congress of Mathematicians (1897–2026); the plenary filter also includes the Emmy Noether and Abel lectures. They were matched by name, so a few may be missing.</p>
+    <p><b>Corrections are very welcome.</b> If anything about you or a colleague is wrong or missing, or you would like an entry changed or removed, please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or <a href="https://krea.edu.in/about/faculty/sias/soumya-dey/" target="_blank" rel="noopener">contact the maintainer</a>.</p>
   </details>
 
   <main id="list"><p class="loading">Loading…</p></main>
   <div class="more"><button class="btn" id="more" hidden>Show more</button></div>
 
   <footer>
-    <p><b>Spotted an error?</b> Corrections and additions are welcome: please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or email the maintainer.</p>
+    <p><b>Spotted an error?</b> Corrections and additions are welcome: please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or <a href="https://krea.edu.in/about/faculty/sias/soumya-dey/" target="_blank" rel="noopener">contact the maintainer</a>.</p>
     <p>Compiled by <a href="https://sites.google.com/site/soumyadeymathematics" target="_blank" rel="noopener">Dr Soumya Dey</a>, <a href="https://krea.edu.in/about/faculty/sias/soumya-dey/" target="_blank" rel="noopener">Krea University</a>, from zbMATH Open (CC BY-SA 4.0) and arXiv. <span id="upd"></span> <a href="index.html">Papers</a> · <a href="https://github.com/soumyadey-math/gt-papers" target="_blank" rel="noopener">Source and downloads on GitHub</a></p>
-    <p>Prepared with the help of Claude (Anthropic): the records were harvested, cross-checked and corrected, and the site was built by Claude under the author's direction.</p>
+    <p>Prepared with the help of Claude (Anthropic): working under the author's direction, Claude harvested, cross-checked and corrected the records and built this site.</p>
   </footer>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -178,6 +181,7 @@ footer a { color: var(--ink-2); }
 .links a:hover { text-decoration: underline; }
 .nums { text-align: right; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .nums b { color: var(--ink); font-size: 15px; }
+.icm { display: inline-block; font-size: 12px; padding: 1px 8px; margin: 3px 4px 0 0; border-radius: 999px; background: var(--accent-soft, rgba(37,99,235,.10)); color: var(--accent); }
 .prize { display: inline-block; font-size: 12px; padding: 1px 8px; margin: 3px 4px 0 0; border-radius: 999px; background: var(--ok-soft); color: var(--ok); }
 .topj { font-size: 12.5px; color: var(--ink-2); margin-top: 3px; }
 .aff { color: var(--ink-2); font-size: 13.5px; }
@@ -193,20 +197,20 @@ footer a { color: var(--ink-2); }
   let ALL, META;
   try { [ALL, META] = await Promise.all([fetch('data/people.json').then(r=>r.json()), fetch('data/meta.json').then(r=>r.json())]); }
   catch(e) { $('list').innerHTML = '<p class="empty">Could not load data/people.json.</p>'; return; }
-  ALL.forEach(p => p._h = fold(p.name+' '+p.aff+' '+p.awards.join(' ')));
+  ALL.forEach(p => { p.icm = p.icm || []; p._inv = p.icm.some(a=>a.startsWith('ICM Invited')); p._plen = p.icm.some(a=>/ICM (Plenary|Emmy Noether|Abel)/.test(a)); p._h = fold(p.name+' '+p.aff+' '+p.awards.join(' ')+' '+p.icm.join(' ')); });
   const SHORT = {"Annals of Mathematics":"Annals","Acta Mathematica":"Acta","Inventiones Mathematicae":"Invent.","Journal of the American Mathematical Society":"JAMS","Publications Mathématiques de l'IHÉS":"IHÉS"};
-  $('stats').innerHTML = `<span><b>${ALL.length.toLocaleString()}</b> researchers</span><span><b>${ALL.filter(p=>p.n_db>=5).length}</b> with 5+ papers here</span><span><b>${ALL.filter(p=>p.awards.length).length}</b> with major prizes</span><span>Updated ${esc(META.updated)}</span>`;
+  $('stats').innerHTML = `<span><b>${ALL.length.toLocaleString()}</b> researchers</span><span><b>${ALL.filter(p=>p.n_db>=5).length}</b> with 5+ papers here</span><span><b>${ALL.filter(p=>p.awards.length).length}</b> with major prizes</span><span><b>${ALL.filter(p=>p._inv).length}</b> ICM invited speakers</span><span><b>${ALL.filter(p=>p._plen).length}</b> ICM plenary speakers</span><span>Updated ${esc(META.updated)}</span>`;
   $('upd').textContent = 'Last updated ' + META.updated + '.';
   let limit = 200;
-  const ids = ['q','sort','minp','ftop','fprize','fhome','factive'];
+  const ids = ['q','sort','minp','ftop','fprize','fhome','factive','ffirst'];
   function readURL(){ const u=new URLSearchParams(location.search); $('q').value=u.get('q')||''; $('sort').value=u.get('s')||'db'; $('minp').value=u.get('m')||'1';
-    $('ftop').checked=u.get('t')==='1'; $('fprize').checked=u.get('p')==='1'; $('fhome').checked=u.get('h')==='1'; $('factive').checked=u.get('a')==='1'; }
+    $('ftop').checked=u.get('t')==='1'; $('fprize').checked=u.get('p')==='1'; $('fhome').checked=u.get('h')==='1'; $('factive').checked=u.get('a')==='1'; $('ficm').checked=u.get('i')==='1'; $('fplen').checked=u.get('pl')==='1'; $('ffirst').value=u.get('f')||''; }
   function writeURL(){ const u=new URLSearchParams(); if($('q').value.trim())u.set('q',$('q').value.trim()); if($('sort').value!=='db')u.set('s',$('sort').value);
-    if($('minp').value!=='1')u.set('m',$('minp').value); [['t','ftop'],['p','fprize'],['h','fhome'],['a','factive']].forEach(([k,id])=>{if($(id).checked)u.set(k,'1');});
+    if($('minp').value!=='1')u.set('m',$('minp').value); [['t','ftop'],['p','fprize'],['h','fhome'],['a','factive'],['i','ficm'],['pl','fplen']].forEach(([k,id])=>{if($(id).checked)u.set(k,'1');}); if($('ffirst').value)u.set('f',$('ffirst').value);
     const s=u.toString(); history.replaceState(null,'',s?'?'+s:location.pathname); }
   function rows(){
-    const terms=fold($('q').value).split(/\s+/).filter(Boolean), m=parseInt($('minp').value)||1;
-    let r=ALL.filter(p=>p.n_db>=m && (!$('ftop').checked||p.n_top) && (!$('fprize').checked||p.awards.length) && (!$('fhome').checked||p.homepages.length) && (!$('factive').checked||p.last>=2020) && terms.every(t=>p._h.includes(t)));
+    const terms=fold($('q').value).split(/\s+/).filter(Boolean), m=parseInt($('minp').value)||1, ff=parseInt($('ffirst').value)||0;
+    let r=ALL.filter(p=>p.n_db>=m && (!$('ftop').checked||p.n_top) && (!$('fprize').checked||p.awards.length) && (!$('ficm').checked||p._inv) && (!$('fplen').checked||p._plen) && (!$('fhome').checked||p.homepages.length) && (!$('factive').checked||p.last>=2020) && (!ff||p.first>=ff) && terms.every(t=>p._h.includes(t)));
     const s=$('sort').value, num=x=>parseInt(x)||0;
     const cmp={db:(a,b)=>b.n_db-a.n_db||b.n_top-a.n_top, top:(a,b)=>b.n_top-a.n_top||b.n_db-a.n_db, total:(a,b)=>num(b.total)-num(a.total), recent:(a,b)=>b.last-a.last||b.n_db-a.n_db, name:(a,b)=>a.name.localeCompare(b.name)}[s];
     return r.sort((a,b)=>cmp(a,b)||a.name.localeCompare(b.name));
@@ -221,7 +225,7 @@ footer a { color: var(--ink-2); }
     if (p.orcid) links.push(`<a href="${esc(p.orcid)}" target="_blank" rel="noopener">ORCID</a>`);
     links.push(`<a href="index.html?ac=${encodeURIComponent(p.code)}&g=none">Papers here →</a>`);
     const top = p.n_top ? `<div class="topj">Top journals: ${Object.entries(p.top).map(([j,n])=>`${esc(SHORT[j]||j)} ${n}`).join(' · ')}</div>` : '';
-    const prizes = p.awards.map(a=>`<span class="prize">${esc(a)}</span>`).join('');
+    const prizes = p.awards.map(a=>`<span class="prize">${esc(a)}</span>`).join('') + p.icm.map(a=>`<span class="icm">${esc(a)}</span>`).join('');
     return `<li class="person"><div>
       <div class="pname"><a href="${esc(p.homepages[0]||p.zbmath)}" target="_blank" rel="noopener">${esc(p.name)}</a></div>
       ${p.aff?`<div class="aff">${esc(p.aff)}${p.aff_src?` <span class="src" title="Where this affiliation comes from">· ${srcHTML(p.aff_src)}</span>`:''}</div>`:''}
@@ -235,15 +239,17 @@ footer a { color: var(--ink-2); }
     $('more').hidden = CUR.length<=limit; $('more').textContent=`Show ${Math.min(200,CUR.length-limit)} more`; }
   function update(){ limit=200; writeURL(); render(); }
   let t; $('q').addEventListener('input',()=>{clearTimeout(t);t=setTimeout(update,180);});
-  ['sort','minp','ftop','fprize','fhome','factive'].forEach(id=>$(id).addEventListener('change',update));
+  ['sort','minp','ftop','fprize','fhome','factive','ffirst','ficm','fplen'].forEach(id=>$(id).addEventListener('change',update));
   $('more').onclick=()=>{limit+=200;render();};
   $('reset').onclick=()=>{history.replaceState(null,'',location.pathname);readURL();update();};
   $('share').onclick=()=>{writeURL();navigator.clipboard.writeText(location.href).then(()=>toast('Link copied'),()=>toast('Copy failed'));};
   const q=s=>'"'+String(s??'').replace(/"/g,'""')+'"';
-  $('dlCsv').onclick=()=>{const head=['name','last_known_affiliation','papers_here','first_year','last_year','top_journal_papers','total_publications','homepages','mathscinet','zbmath','genealogy','wikipedia','major_prizes'];
-    const lines=CUR.map(p=>[p.name,p.aff,p.n_db,p.first,p.last,p.n_top,p.total,p.homepages.join(' '),p.mathscinet,p.zbmath,p.mgp,p.wikipedia,p.awards.join('; ')].map(q).join(','));
+  $('dlCsv').onclick=()=>{const head=['name','last_known_affiliation','papers_here','first_year','last_year','top_journal_papers','total_publications','homepages','mathscinet','zbmath','genealogy','wikipedia','major_prizes','icm_talks'];
+    const lines=CUR.map(p=>[p.name,p.aff,p.n_db,p.first,p.last,p.n_top,p.total,p.homepages.join(' '),p.mathscinet,p.zbmath,p.mgp,p.wikipedia,p.awards.join('; '),p.icm.join('; ')].map(q).join(','));
     const u=URL.createObjectURL(new Blob(['﻿'+head.join(',')+'\n'+lines.join('\n')],{type:'text/csv'}));const a=document.createElement('a');a.href=u;a.download='researchers.csv';a.click();toast(CUR.length+' rows downloaded');};
   document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==$('q')){e.preventDefault();$('q').focus();}});
+  { const lo=Math.min(...ALL.map(p=>p.first)), hi=Math.max(...ALL.map(p=>p.first)); let o='';
+    for(let y=lo;y<=hi;y++) o+=`<option value="${y}">${y}</option>`; $('ffirst').insertAdjacentHTML('beforeend',o); }
   readURL(); render();
 })();
 </script>

@@ -50,7 +50,7 @@ The few records where Crossref and zbMATH still disagree carry a note saying whi
 - Type in the search box to search titles, authors, MSC codes and DOIs. Accents don't matter, so `teichmuller` also finds Teichmüller.
 - Narrow a search with `au:` (author), `ti:` (title), `msc:` (code) or `j:` (journal). Put phrases in quotes, as in `ti:"curve complex"`, and use a minus sign to exclude a word, as in `-erratum`.
 - Filter by journal, years, status and MSC code, and group the results by year, by journal, or not at all.
-- Click an author to see all their papers, an MSC code to filter by it, or a bar in the year chart to jump to that year.
+- Click an author to see all their papers, an MSC code to filter by it, or a bar in the year chart to show only that year.
 - **Copy BibTeX** copies one citation; **Download BibTeX / CSV** saves every paper matching the current search.
 - **Copy link to this search** gives a link that reopens exactly this search, which is handy for sharing a reading list with students.
 
@@ -60,13 +60,13 @@ The researchers page lists everyone who appears as an author. For each person it
 
 - last known affiliation, checked against the address on their recent arXiv papers where possible (that paper is linked);
 - links to their homepage, MathSciNet, zbMATH and Mathematics Genealogy pages;
-- how many of their papers are in this database, their total publications in zbMATH, their papers in top journals and their major prizes.
+- how many of their papers are in this database, their total publications in zbMATH, their papers in top journals, their major prizes and their invited or plenary talks at the International Congress of Mathematicians.
 
 People are identified by their zbMATH author profile, so different spellings of the same name are merged. You can search, sort and filter the list, and download it as CSV.
 
 ## Corrections
 
-Corrections are very welcome, about papers or about people. If you find an error or a missing paper, or if anything about you or a colleague is wrong or out of date, please [open an issue](https://github.com/soumyadey-math/gt-papers/issues/new) or email the maintainer. You can also ask for an entry about you to be changed or removed.
+Corrections are very welcome, about papers or about people. If you find an error or a missing paper, or if anything about you or a colleague is wrong or out of date, please [open an issue](https://github.com/soumyadey-math/gt-papers/issues/new) or [contact the maintainer](https://krea.edu.in/about/faculty/sias/soumya-dey/). You can also ask for an entry about you to be changed or removed.
 
 ## Citing
 
