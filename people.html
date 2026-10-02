@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Researchers: Geometry, Topology &amp; Groups</title>
+<meta name="description" content="Researchers in the searchable database of papers in low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, in 39 leading journals, compiled from zbMATH Open.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper: #f5f6f8; --surface: #ffffff; --ink: #18202e; --ink-2: #4a5468; --ink-3: #6f788c;
+  --rule: #dfe3ea; --accent: #2b4c9b; --accent-soft: #e7ecf8;
+  --ok: #1f7a52; --ok-soft: #e3f3ea; --mid: #5b6479; --mid-soft: #eceef3; --warn: #9a5b00; --hl: #fff3b8;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #11151d; --surface: #181e29; --ink: #e6e9f0; --ink-2: #b0b8c9; --ink-3: #8f98ad;
+    --rule: #2a3242; --accent: #8fa9ec; --accent-soft: #1f2a45;
+    --ok: #6fcf9f; --ok-soft: #173327; --mid: #a3abbe; --mid-soft: #232a38; --warn: #f0b35c; --hl: #4a4217;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #11151d; --surface: #181e29; --ink: #e6e9f0; --ink-2: #b0b8c9; --ink-3: #8f98ad;
+  --rule: #2a3242; --accent: #8fa9ec; --accent-soft: #1f2a45;
+  --ok: #6fcf9f; --ok-soft: #173327; --mid: #a3abbe; --mid-soft: #232a38; --warn: #f0b35c; --hl: #4a4217;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.5; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 64px; }
+header.top { display: grid; gap: 6px; margin-bottom: 18px; }
+.eyebrow { font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 4vw, 36px); line-height: 1.12; margin: 0; text-wrap: balance; }
+.lede { color: var(--ink-2); max-width: 72ch; margin: 4px 0 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 8px; font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 13px; }
+.stats b { color: var(--ink); font-weight: 600; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px; }
+.controls { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; position: sticky; top: 0; z-index: 5; box-shadow: 0 6px 18px -14px rgba(20,30,50,.35); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.search { flex: 1 1 300px; }
+.search input { width: 100%; font: inherit; font-size: 15px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); }
+input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+select, .yr { font: inherit; padding: 7px 9px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); color: var(--ink); max-width: 100%; }
+.yr { width: 5.6em; font-variant-numeric: tabular-nums; }
+label.lbl { font-size: 12px; color: var(--ink-3); display: flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; }
+#journal { width: 16em; max-width: 100%; min-width: 0; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.seg button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--ink-2); padding: 7px 11px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip { font-family: var(--mono); font-size: 12px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.chip .n { color: var(--ink-3); margin-left: 4px; font-variant-numeric: tabular-nums; }
+.chiplabel { font-size: 12px; color: var(--ink-3); margin-right: 2px; }
+.count { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.btn { font: inherit; font-size: 13px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); padding: 6px 11px; border-radius: 8px; cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.linkbtn { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 2px; }
+.help { font-size: 12.5px; color: var(--ink-3); }
+.help code { font-family: var(--mono); font-size: 12px; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 0 4px; color: var(--ink-2); }
+.hist { display: flex; align-items: flex-end; gap: 1px; overflow: hidden; height: 46px; margin-top: 2px; }
+.hist button { flex: 1 1 0; min-width: 0; border: 0; padding: 0; background: var(--accent); opacity: .55; cursor: pointer; border-radius: 1px 1px 0 0; }
+.hist button:hover, .hist button:focus-visible { opacity: 1; }
+.histaxis { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+details.about { margin: 16px 0 6px; }
+details.about summary { cursor: pointer; font-weight: 500; }
+details.about p, details.about li { color: var(--ink-2); max-width: 78ch; }
+.group { margin-top: 24px; }
+.group h2 { font-family: var(--serif); font-weight: 500; font-size: 22px; margin: 0 0 4px; display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+.group h2 .gc { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); font-weight: 400; }
+ol.papers { list-style: none; margin: 0; padding: 0; }
+li.paper { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 12px 0; border-bottom: 1px dashed var(--rule); }
+.ptitle { font-family: var(--serif); font-size: 17px; line-height: 1.3; font-weight: 500; }
+.ptitle a { color: var(--ink); text-decoration: none; }
+.ptitle a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.meta { color: var(--ink-2); font-size: 13.5px; }
+.meta .jr { font-style: italic; }
+.au { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; text-decoration-color: var(--ink-3); }
+.au:hover { color: var(--accent); }
+.codes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.code { font-family: var(--mono); font-size: 11.5px; padding: 1px 6px; border-radius: 4px; color: var(--ink-3); border: 1px solid transparent; background: none; cursor: pointer; }
+.code.m { color: var(--accent); background: var(--accent-soft); }
+.code.p { border-color: var(--ink-3); }
+.code.m.p { border-color: var(--accent); }
+.side { display: grid; justify-items: end; align-content: start; gap: 6px; }
+.badge { font-size: 11.5px; font-weight: 500; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.badge.v { color: var(--ok); background: var(--ok-soft); }
+.badge.c { color: var(--mid); background: var(--mid-soft); }
+.tk { font-size: 11.5px; color: var(--warn); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.actions a, .actions button { font-size: 12.5px; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; text-decoration: none; }
+.actions a:hover, .actions button:hover { text-decoration: underline; }
+mark { background: var(--hl); color: inherit; border-radius: 2px; }
+.empty { padding: 40px 0; text-align: center; color: var(--ink-2); }
+.more { display: flex; justify-content: center; margin-top: 18px; }
+.toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 20; }
+.toast.on { opacity: 1; }
+.loading { padding: 40px 0; text-align: center; color: var(--ink-2); }
+footer { margin-top: 40px; color: var(--ink-3); font-size: 12.5px; }
+footer a { color: var(--ink-2); }
+@media (max-width: 600px) {
+  li.paper { grid-template-columns: 1fr; }
+  .side { justify-items: start; }
+  .actions { justify-content: flex-start; }
+  .controls { position: static; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Research papers database · Geometry &amp; Topology · <a href="index.html">Papers</a> · <b>Researchers</b></div>
+    <h1>Researchers</h1>
+    <p class="lede">Everyone who appears as an author in the <a href="index.html">paper database</a>, with last known affiliation, links to homepages, MathSciNet, zbMATH and the Mathematics Genealogy Project, publication counts and major prizes.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section class="panel controls" aria-label="Search and filters">
+    <div class="row">
+      <div class="search"><input id="q" type="search" placeholder="Search names, affiliations, prizes…  (press / to focus)" autocomplete="off"></div>
+      <label class="lbl" for="sort">Sort
+        <select id="sort">
+          <option value="db">Papers in this database</option>
+          <option value="top">Papers in top journals</option>
+          <option value="total">Total publications (zbMATH)</option>
+          <option value="recent">Most recent paper</option>
+          <option value="name">Name (A–Z)</option>
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      <label class="lbl" for="minp">At least <input class="yr" id="minp" type="number" min="1" value="1" inputmode="numeric"> papers here</label>
+      <label class="lbl"><input type="checkbox" id="ftop"> Has a paper in a top journal</label>
+      <label class="lbl"><input type="checkbox" id="fprize"> Has a major prize</label>
+      <label class="lbl"><input type="checkbox" id="fhome"> Has a homepage</label>
+      <label class="lbl"><input type="checkbox" id="factive"> Active since 2020</label>
+    </div>
+    <div class="row">
+      <span class="count" id="count" aria-live="polite"></span>
+      <button class="btn" id="dlCsv">Download CSV</button>
+      <button class="btn" id="share">Copy link to this search</button>
+      <button class="linkbtn" id="reset">Reset</button>
+    </div>
+  </section>
+
+  <details class="about">
+    <summary>About this list</summary>
+    <p>People are identified by their zbMATH Open author profile, so different spellings of the same name are merged. <b>Papers here</b> counts papers in this database; <b>total publications</b> is zbMATH's count of everything the person has published. <b>Top journals</b> are Annals of Mathematics, Acta Mathematica, Inventiones Mathematicae, Journal of the AMS and Publications Mathématiques de l'IHÉS.</p>
+    <p>Affiliations come from Jon McCammond's list of <a href="https://web.math.ucsb.edu/~jon.mccammond/geogrouptheory/people.html" target="_blank" rel="noopener">people in geometric group theory</a> or from Wikidata, and may be out of date. Homepages come from zbMATH, that list and Wikidata. MathSciNet links are shown where the MathSciNet author ID is recorded in Wikidata; MathSciNet needs a subscription. Prizes are major prizes only, as recorded in zbMATH or Wikidata, so the list is not complete.</p>
+    <p><b>Corrections are very welcome.</b> If anything about you or a colleague is wrong or missing, or you would like an entry changed or removed, please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or email the maintainer.</p>
+  </details>
+
+  <main id="list"><p class="loading">Loading…</p></main>
+  <div class="more"><button class="btn" id="more" hidden>Show more</button></div>
+
+  <footer>
+    <p><b>Spotted an error?</b> Corrections and additions are welcome: please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or email the maintainer.</p>
+    <p>Compiled by Dr Soumya Dey, Krea University, from zbMATH Open (CC BY-SA 4.0), Wikidata (CC0) and Jon McCammond's list of people in geometric group theory. <span id="upd"></span> <a href="index.html">Paper database</a> · <a href="https://github.com/soumyadey-math/gt-papers" target="_blank" rel="noopener">Source and downloads on GitHub</a></p>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<style>
+.person { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 12px 0; border-bottom: 1px dashed var(--rule); }
+.pname { font-family: var(--serif); font-size: 18px; font-weight: 500; }
+.pname a { color: var(--ink); text-decoration: none; }
+.pname a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.links { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; margin-top: 3px; }
+.links a { color: var(--accent); text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+.nums { text-align: right; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.nums b { color: var(--ink); font-size: 15px; }
+.prize { display: inline-block; font-size: 12px; padding: 1px 8px; margin: 3px 4px 0 0; border-radius: 999px; background: var(--ok-soft); color: var(--ok); }
+.topj { font-size: 12.5px; color: var(--ink-2); margin-top: 3px; }
+.aff { color: var(--ink-2); font-size: 13.5px; }
+.src { color: var(--ink-3); font-size: 12px; }
+@media (max-width: 600px) { .person { grid-template-columns: 1fr; } .nums { text-align: left; } }
+</style>
+<script>
+(async function(){
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const toast = m => { const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),1800); };
+  const fold = s => String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+  let ALL, META;
+  try { [ALL, META] = await Promise.all([fetch('data/people.json').then(r=>r.json()), fetch('data/meta.json').then(r=>r.json())]); }
+  catch(e) { $('list').innerHTML = '<p class="empty">Could not load data/people.json.</p>'; return; }
+  ALL.forEach(p => p._h = fold(p.name+' '+p.aff+' '+p.awards.join(' ')));
+  const SHORT = {"Annals of Mathematics":"Annals","Acta Mathematica":"Acta","Inventiones Mathematicae":"Invent.","Journal of the American Mathematical Society":"JAMS","Publications Mathématiques de l'IHÉS":"IHÉS"};
+  $('stats').innerHTML = `<span><b>${ALL.length.toLocaleString()}</b> researchers</span><span><b>${ALL.filter(p=>p.n_db>=5).length}</b> with 5+ papers here</span><span><b>${ALL.filter(p=>p.awards.length).length}</b> with major prizes</span><span>Updated ${esc(META.updated)}</span>`;
+  $('upd').textContent = 'Last updated ' + META.updated + '.';
+  let limit = 200;
+  const ids = ['q','sort','minp','ftop','fprize','fhome','factive'];
+  function readURL(){ const u=new URLSearchParams(location.search); $('q').value=u.get('q')||''; $('sort').value=u.get('s')||'db'; $('minp').value=u.get('m')||'1';
+    $('ftop').checked=u.get('t')==='1'; $('fprize').checked=u.get('p')==='1'; $('fhome').checked=u.get('h')==='1'; $('factive').checked=u.get('a')==='1'; }
+  function writeURL(){ const u=new URLSearchParams(); if($('q').value.trim())u.set('q',$('q').value.trim()); if($('sort').value!=='db')u.set('s',$('sort').value);
+    if($('minp').value!=='1')u.set('m',$('minp').value); [['t','ftop'],['p','fprize'],['h','fhome'],['a','factive']].forEach(([k,id])=>{if($(id).checked)u.set(k,'1');});
+    const s=u.toString(); history.replaceState(null,'',s?'?'+s:location.pathname); }
+  function rows(){
+    const terms=fold($('q').value).split(/\s+/).filter(Boolean), m=parseInt($('minp').value)||1;
+    let r=ALL.filter(p=>p.n_db>=m && (!$('ftop').checked||p.n_top) && (!$('fprize').checked||p.awards.length) && (!$('fhome').checked||p.homepages.length) && (!$('factive').checked||p.last>=2020) && terms.every(t=>p._h.includes(t)));
+    const s=$('sort').value, num=x=>parseInt(x)||0;
+    const cmp={db:(a,b)=>b.n_db-a.n_db||b.n_top-a.n_top, top:(a,b)=>b.n_top-a.n_top||b.n_db-a.n_db, total:(a,b)=>num(b.total)-num(a.total), recent:(a,b)=>b.last-a.last||b.n_db-a.n_db, name:(a,b)=>a.name.localeCompare(b.name)}[s];
+    return r.sort((a,b)=>cmp(a,b)||a.name.localeCompare(b.name));
+  }
+  function personHTML(p){
+        const links = [];
+    p.homepages.forEach((h,i)=>links.push(`<a href="${esc(h)}" target="_blank" rel="noopener">${i?'Homepage '+(i+1):'Homepage'}</a>`));
+    if (p.mathscinet) links.push(`<a href="${esc(p.mathscinet)}" target="_blank" rel="noopener">MathSciNet</a>`);
+    links.push(`<a href="${esc(p.zbmath)}" target="_blank" rel="noopener">zbMATH</a>`);
+    if (p.mgp) links.push(`<a href="${esc(p.mgp)}" target="_blank" rel="noopener">Genealogy</a>`);
+    if (p.wikipedia) links.push(`<a href="${esc(p.wikipedia)}" target="_blank" rel="noopener">Wikipedia</a>`);
+    if (p.orcid) links.push(`<a href="${esc(p.orcid)}" target="_blank" rel="noopener">ORCID</a>`);
+    links.push(`<a href="index.html?ac=${encodeURIComponent(p.code)}&g=none">Papers here →</a>`);
+    const top = p.n_top ? `<div class="topj">Top journals: ${Object.entries(p.top).map(([j,n])=>`${esc(SHORT[j]||j)} ${n}`).join(' · ')}</div>` : '';
+    const prizes = p.awards.map(a=>`<span class="prize">${esc(a)}</span>`).join('');
+    return `<li class="person"><div>
+      <div class="pname"><a href="${esc(p.homepages[0]||p.zbmath)}" target="_blank" rel="noopener">${esc(p.name)}</a></div>
+      ${p.aff?`<div class="aff">${esc(p.aff)} <span class="src" title="Where this affiliation comes from">· ${esc(p.aff_src)}</span></div>`:''}
+      <div class="links">${links.join('')}</div>${top}${prizes?`<div>${prizes}</div>`:''}
+    </div><div class="nums"><b>${p.n_db}</b> paper${p.n_db===1?'':'s'} here (${p.first===p.last?p.first:p.first+'–'+p.last})<br>${p.total?esc(p.total)+' publications in total':''}</div></li>`;
+  }
+  let CUR=[];
+  function render(){ CUR=rows(); $('count').textContent=`${CUR.length.toLocaleString()} of ${ALL.length.toLocaleString()} researchers`;
+    $('list').innerHTML = CUR.length ? '<ol class="papers">'+CUR.slice(0,limit).map(personHTML).join('')+'</ol>' : '<p class="empty">No researchers match. Try removing a filter.</p>';
+    $('more').hidden = CUR.length<=limit; $('more').textContent=`Show ${Math.min(200,CUR.length-limit)} more`; }
+  function update(){ limit=200; writeURL(); render(); }
+  let t; $('q').addEventListener('input',()=>{clearTimeout(t);t=setTimeout(update,180);});
+  ['sort','minp','ftop','fprize','fhome','factive'].forEach(id=>$(id).addEventListener('change',update));
+  $('more').onclick=()=>{limit+=200;render();};
+  $('reset').onclick=()=>{history.replaceState(null,'',location.pathname);readURL();update();};
+  $('share').onclick=()=>{writeURL();navigator.clipboard.writeText(location.href).then(()=>toast('Link copied'),()=>toast('Copy failed'));};
+  const q=s=>'"'+String(s??'').replace(/"/g,'""')+'"';
+  $('dlCsv').onclick=()=>{const head=['name','last_known_affiliation','papers_here','first_year','last_year','top_journal_papers','total_publications','homepages','mathscinet','zbmath','genealogy','wikipedia','major_prizes'];
+    const lines=CUR.map(p=>[p.name,p.aff,p.n_db,p.first,p.last,p.n_top,p.total,p.homepages.join(' '),p.mathscinet,p.zbmath,p.mgp,p.wikipedia,p.awards.join('; ')].map(q).join(','));
+    const u=URL.createObjectURL(new Blob(['﻿'+head.join(',')+'\n'+lines.join('\n')],{type:'text/csv'}));const a=document.createElement('a');a.href=u;a.download='researchers.csv';a.click();toast(CUR.length+' rows downloaded');};
+  document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==$('q')){e.preventDefault();$('q').focus();}});
+  readURL(); render();
+})();
+</script>
+</body>
+</html>
