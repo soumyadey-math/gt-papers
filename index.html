@@ -121,7 +121,7 @@ footer a { color: var(--ink-2); }
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="eyebrow">Research papers database · Geometry &amp; Topology</div>
+    <div class="eyebrow">Research papers database · Geometry &amp; Topology · <b>Papers</b> · <a href="people.html">Researchers</a></div>
     <h1>Geometry, Topology &amp; Groups: Paper Database</h1>
     <p class="lede">Papers in 39 leading journals classified (primary or secondary) under low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, compiled from zbMATH Open. Each title links to the paper on the journal's website.</p>
     <div class="stats" id="stats"></div>
@@ -161,7 +161,7 @@ footer a { color: var(--ink-2); }
     <summary>About this database</summary>
     <p>Records come from <a href="https://zbmath.org/" target="_blank" rel="noopener">zbMATH Open</a>. A paper is included when any of its MSC codes (primary or secondary) is one of the target codes shown as chips above, or when its title contains "mapping class" or "Teichmüller" (marked <span class="tk">Found by title keyword</span>). All years are covered for every journal.</p>
     <ul>
-      <li><span class="badge v">Verified</span> two independent reads of the zbMATH record agree.</li>
+      <li><span class="badge v">Verified</span> confirmed against the publisher's record in Crossref, or by two independent reads of the zbMATH record.</li>
       <li><span class="badge c">Checked</span> read once; passed DOI, year and completeness checks.</li>
       <li>Missing DOIs and a few errors in zbMATH (pages, year, issue) were corrected by hand against the publishers' pages.</li>
     </ul>
@@ -172,7 +172,7 @@ footer a { color: var(--ink-2); }
   <div class="more"><button class="btn" id="more" hidden>Show more</button></div>
 
   <footer>
-    <p>Compiled by Dr Soumya Dey, Krea University. Bibliographic data from zbMATH Open (CC BY-SA 4.0). <span id="upd"></span> <a href="https://github.com/soumyadey-math/gt-papers" target="_blank" rel="noopener">Source and downloads on GitHub</a> · <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">Report an error</a></p>
+    <p>Compiled by Dr Soumya Dey, Krea University. Bibliographic data from zbMATH Open (CC BY-SA 4.0). <span id="upd"></span> <a href="https://github.com/soumyadey-math/gt-papers" target="_blank" rel="noopener">Source and downloads on GitHub</a> · <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">Report an error</a> · <a href="people.html">Researchers</a></p>
   </footer>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -229,14 +229,16 @@ footer a { color: var(--ink-2); }
   const fieldOf = (r, f) => f === 'au' ? r._a : f === 'ti' ? r._t : f === 'msc' ? r._m : f === 'doi' ? r.doi.toLowerCase() : f === 'j' ? fold(r.j) : r._all;
 
   let groupBy = 'year', limit = 300;
-  function state(){ return { q: $('q').value.trim(), j: $('journal').value, y1: $('y1').value, y2: $('y2').value, lv: $('level').value, pr: $('prim').checked ? '1' : '', c: [...active].join(','), g: groupBy === 'year' ? '' : groupBy }; }
+  function state(){ return { ac: AC, q: $('q').value.trim(), j: $('journal').value, y1: $('y1').value, y2: $('y2').value, lv: $('level').value, pr: $('prim').checked ? '1' : '', c: [...active].join(','), g: groupBy === 'year' ? '' : groupBy }; }
   function writeURL(){
     const s = state(), p = new URLSearchParams();
     Object.entries(s).forEach(([k,v]) => { if (v) p.set(k, v); });
     const qs = p.toString();
     history.replaceState(null, '', qs ? '?' + qs : location.pathname);
   }
+  let AC='';
   function readURL(){
+    AC = new URLSearchParams(location.search).get('ac') || '';
     const p = new URLSearchParams(location.search);
     $('q').value = p.get('q') || ''; $('journal').value = p.get('j') || ''; $('y1').value = p.get('y1') || ''; $('y2').value = p.get('y2') || '';
     $('level').value = p.get('lv') || ''; $('prim').checked = p.get('pr') === '1';
@@ -250,6 +252,7 @@ footer a { color: var(--ink-2); }
     const y1 = parseInt($('y1').value) || -Infinity, y2 = parseInt($('y2').value) || Infinity;
     const codes = [...active].filter(c => c !== 'TITLE'), wantTitle = active.has('TITLE');
     const rows = ALL.filter(r => {
+      if (AC && !(r.ac||[]).includes(AC)) return false;
       if (j && r.j !== j) return false;
       if (lv && r.lv !== lv) return false;
       if (r.y < y1 || r.y > y2) return false;
@@ -291,6 +294,7 @@ footer a { color: var(--ink-2); }
       <div class="side">
         <span class="badge ${r.lv}">${r.lv === 'v' ? 'Verified' : 'Checked'}</span>
         ${r.tk ? '<span class="tk">Found by title keyword</span>' : ''}
+        ${r.cd ? `<span class="tk" title="zbMATH and the publisher's record disagree on these fields">Crossref differs: ${esc(r.cd)}</span>` : ''}
         <div class="actions"><a href="${esc(link(r))}" target="_blank" rel="noopener">${linkLabel(r)} ↗</a><button data-bib="${esc(r.id)}">Copy BibTeX</button></div>
       </div>
     </li>`;
@@ -306,7 +310,7 @@ footer a { color: var(--ink-2); }
   let CUR = [];
   function render(){
     const { terms, rows } = filtered(); CUR = rows;
-    $('count').textContent = `${rows.length.toLocaleString()} of ${ALL.length.toLocaleString()} papers`;
+    $('count').textContent = `${rows.length.toLocaleString()} of ${ALL.length.toLocaleString()} papers` + (AC ? ` by one author (zbMATH ID ${AC})` : '');
     hist(rows);
     const key = groupBy === 'year' ? (r => r.y) : groupBy === 'journal' ? (r => r.j) : (r => '');
     const sorted = rows.slice().sort(groupBy === 'journal'
