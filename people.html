@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Researchers: Geometry, Topology &amp; Groups</title>
+<title>Researchers · Low-Dimensional Topology and Geometric Group Theory: Research Papers Database</title>
 <meta name="description" content="Researchers in the searchable database of papers in low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, in 39 leading journals, compiled from zbMATH Open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,9 +117,9 @@ footer a { color: var(--ink-2); }
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="eyebrow">Research papers database · Geometry &amp; Topology · <a href="index.html">Papers</a> · <b>Researchers</b></div>
+    <div class="eyebrow">Low-Dimensional Topology and Geometric Group Theory: Research Papers Database · <a href="index.html">Papers</a> · <b>Researchers</b></div>
     <h1>Researchers</h1>
-    <p class="lede">Everyone who appears as an author in the <a href="index.html">paper database</a>, with last known affiliation, links to homepages, MathSciNet, zbMATH and the Mathematics Genealogy Project, publication counts and major prizes.</p>
+    <p class="lede">Everyone who appears as an author in the <a href="index.html">papers database</a>, with last known affiliation, links to homepages, MathSciNet, zbMATH and the Mathematics Genealogy Project, publication counts and major prizes.</p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -154,7 +154,7 @@ footer a { color: var(--ink-2); }
   <details class="about">
     <summary>About this list</summary>
     <p>People are identified by their zbMATH Open author profile, so different spellings of the same name are merged. <b>Papers here</b> counts papers in this database; <b>total publications</b> is zbMATH's count of everything the person has published. <b>Top journals</b> are Annals of Mathematics, Acta Mathematica, Inventiones Mathematicae, Journal of the AMS and Publications Mathématiques de l'IHÉS.</p>
-    <p>Affiliations come from Jon McCammond's list of <a href="https://web.math.ucsb.edu/~jon.mccammond/geogrouptheory/people.html" target="_blank" rel="noopener">people in geometric group theory</a> or from Wikidata, and may be out of date. Homepages come from zbMATH, that list and Wikidata. MathSciNet links are shown where the MathSciNet author ID is recorded in Wikidata; MathSciNet needs a subscription. Prizes are major prizes only, as recorded in zbMATH or Wikidata, so the list is not complete.</p>
+    <p>Affiliations are the last known ones and may be out of date. Where an affiliation was taken from the author's own address on a recent arXiv paper, that paper is linked. MathSciNet links are shown where the author ID is known; MathSciNet needs a subscription. Prizes are major prizes only, so the list is not complete.</p>
     <p><b>Corrections are very welcome.</b> If anything about you or a colleague is wrong or missing, or you would like an entry changed or removed, please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or email the maintainer.</p>
   </details>
 
@@ -163,7 +163,8 @@ footer a { color: var(--ink-2); }
 
   <footer>
     <p><b>Spotted an error?</b> Corrections and additions are welcome: please <a href="https://github.com/soumyadey-math/gt-papers/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a> or email the maintainer.</p>
-    <p>Compiled by Dr Soumya Dey, Krea University, from zbMATH Open (CC BY-SA 4.0), Wikidata (CC0) and Jon McCammond's list of people in geometric group theory. <span id="upd"></span> <a href="index.html">Paper database</a> · <a href="https://github.com/soumyadey-math/gt-papers" target="_blank" rel="noopener">Source and downloads on GitHub</a></p>
+    <p>Compiled by <a href="https://sites.google.com/site/soumyadeymathematics" target="_blank" rel="noopener">Dr Soumya Dey</a>, <a href="https://krea.edu.in/about/faculty/sias/soumya-dey/" target="_blank" rel="noopener">Krea University</a>, from zbMATH Open (CC BY-SA 4.0) and arXiv. <span id="upd"></span> <a href="index.html">Papers</a> · <a href="https://github.com/soumyadey-math/gt-papers" target="_blank" rel="noopener">Source and downloads on GitHub</a></p>
+    <p>Prepared with the help of Claude (Anthropic): the records were harvested, cross-checked and corrected, and the site was built by Claude under the author's direction.</p>
   </footer>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -223,10 +224,11 @@ footer a { color: var(--ink-2); }
     const prizes = p.awards.map(a=>`<span class="prize">${esc(a)}</span>`).join('');
     return `<li class="person"><div>
       <div class="pname"><a href="${esc(p.homepages[0]||p.zbmath)}" target="_blank" rel="noopener">${esc(p.name)}</a></div>
-      ${p.aff?`<div class="aff">${esc(p.aff)} <span class="src" title="Where this affiliation comes from">· ${esc(p.aff_src)}</span></div>`:''}
+      ${p.aff?`<div class="aff">${esc(p.aff)}${p.aff_src?` <span class="src" title="Where this affiliation comes from">· ${srcHTML(p.aff_src)}</span>`:''}</div>`:''}
       <div class="links">${links.join('')}</div>${top}${prizes?`<div>${prizes}</div>`:''}
     </div><div class="nums"><b>${p.n_db}</b> paper${p.n_db===1?'':'s'} here (${p.first===p.last?p.first:p.first+'–'+p.last})<br>${p.total?esc(p.total)+' publications in total':''}</div></li>`;
   }
+  function srcHTML(src){ const m=/^arXiv:(\S+) \((\d{4})\)$/.exec(src||''); return m?`as listed on <a href="https://arxiv.org/abs/${esc(m[1])}" target="_blank" rel="noopener">arXiv:${esc(m[1])}</a> (${m[2]})`:esc(src); }
   let CUR=[];
   function render(){ CUR=rows(); $('count').textContent=`${CUR.length.toLocaleString()} of ${ALL.length.toLocaleString()} researchers`;
     $('list').innerHTML = CUR.length ? '<ol class="papers">'+CUR.slice(0,limit).map(personHTML).join('')+'</ol>' : '<p class="empty">No researchers match. Try removing a filter.</p>';
