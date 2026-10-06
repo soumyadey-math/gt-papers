@@ -1,6 +1,8 @@
 # Low-Dimensional Topology and Geometric Group Theory: Research Papers Database
 
-A searchable database of research papers in low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, published in 39 leading mathematics journals from 1904 to the present. It currently lists about 7,000 papers and 4,000 authors.
+A searchable database of research papers in low-dimensional topology, mapping class groups, Teichmüller theory and geometric group theory, published in 39 leading mathematics journals from 1904 to the present. It currently lists about 7,000 core papers, about 1,600 closely related papers and 4,500 authors.
+
+*This database is actively maintained and is being extended continually to cover more papers, researchers and journals.*
 
 - **Papers:** https://soumyadey-math.github.io/gt-papers/
 - **Researchers:** https://soumyadey-math.github.io/gt-papers/people.html
@@ -29,6 +31,8 @@ Papers whose title contains "mapping class" or "Teichmüller" are included too, 
 
 Every year of every journal is covered. The list is only as complete as zbMATH's classification: a paper filed under other MSC codes will be missing, and the newest issues can take a few months to appear.
 
+**Related papers.** A second tier, marked *Related*, adds closely connected papers that are not in the core set (papers cited by at least twelve core papers, in any journal, book or proceedings volume, and papers in the 39 journals with a neighbouring MSC code, such as geodesic flows or surface dynamics, that match topic keywords or have an author with at least three core papers), and the *Tier* filter on the site shows core papers, related papers or both.
+
 <details>
 <summary><b>The 39 journals</b></summary>
 
@@ -40,7 +44,7 @@ Acta Mathematica · Advances in Mathematics · Algebraic & Geometric Topology ·
 
 Each record carries a status:
 
-- **Verified:** the title, year, volume, issue and pages agree with the publisher's Crossref record, or with two independent reads of zbMATH. This covers almost all records (6,949 of 6,961 as of October 2026).
+- **Verified:** the title, year, volume, issue and pages agree with the publisher's Crossref record, or with two independent reads of zbMATH. This covers almost all records (8,590 of 8,596 as of October 2026).
 - **Checked:** read once from zbMATH and passed consistency checks.
 
 The few records where Crossref and zbMATH still disagree carry a note saying which fields differ.
@@ -49,18 +53,18 @@ The few records where Crossref and zbMATH still disagree carry a note saying whi
 
 - Type in the search box to search titles, authors, MSC codes and DOIs. Accents don't matter, so `teichmuller` also finds Teichmüller.
 - Narrow a search with `au:` (author), `ti:` (title), `msc:` (code) or `j:` (journal). Put phrases in quotes, as in `ti:"curve complex"`, and use a minus sign to exclude a word, as in `-erratum`.
-- Filter by journal, years, status and MSC code, and group the results by year, by journal, or not at all.
+- Filter by tier (core / related), journal (or "Other venues" for related papers elsewhere), source type (journal, book, chapter, proceedings), years, status and MSC code, and group the results by year, by journal, or not at all.
 - Click an author to see all their papers, an MSC code to filter by it, or a bar in the year chart to show only that year.
 - **Copy BibTeX** copies one citation; **Download BibTeX / CSV** saves every paper matching the current search.
 - **Copy link to this search** gives a link that reopens exactly this search, which is handy for sharing a reading list with students.
 
 ## The researchers page
 
-The researchers page lists everyone who appears as an author. For each person it gives:
+The researchers page lists everyone who appears as an author of a core or related paper. For each person it gives:
 
 - last known affiliation, checked against the address on their recent arXiv papers where possible (that paper is linked);
 - links to their homepage, MathSciNet, zbMATH and Mathematics Genealogy pages;
-- how many of their papers are in this database, their total publications in zbMATH, their papers in top journals, their major prizes and their invited or plenary talks at the International Congress of Mathematicians.
+- how many of their papers are in this database (core and related counted separately), their total publications in zbMATH, their papers in top journals, their major prizes and their invited or plenary talks at the International Congress of Mathematicians.
 
 People are identified by their zbMATH author profile, so different spellings of the same name are merged. You can search, sort and filter the list, and download it as CSV.
 
