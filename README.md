@@ -44,7 +44,7 @@ Acta Mathematica · Advances in Mathematics · Algebraic & Geometric Topology ·
 
 Each record carries a status:
 
-- **Verified:** the title, year, volume, issue and pages agree with the publisher's Crossref record, or with two independent reads of zbMATH. This covers almost all records (8,590 of 8,596 as of October 2026).
+- **Verified:** the title, year, volume, issue and pages agree with the publisher's Crossref record, or with two independent reads of zbMATH. This covers almost all records (8,624 of 8,630 as of November 2026).
 - **Checked:** read once from zbMATH and passed consistency checks.
 
 The few records where Crossref and zbMATH still disagree carry a note saying which fields differ.
